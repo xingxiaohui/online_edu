@@ -1,5 +1,6 @@
 package com.xxh.eduservice.entity;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
@@ -27,7 +28,7 @@ public class Teacher implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "id")
-      @TableId(value = "id", type = IdType.ID_WORKER)
+    @TableId(value = "id", type = IdType.ID_WORKER)
     private String id;
 
     @ApiModelProperty(value = "姓名")
@@ -48,6 +49,7 @@ public class Teacher implements Serializable {
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
+    @TableLogic
     @ApiModelProperty(value = "逻辑删除，1删除，0未删除")
     private Boolean isDeleted;
 
