@@ -1,6 +1,7 @@
 package com.xxh.eduservice.controller;
 
 
+import com.xxh.commonutils.result.PageResult;
 import com.xxh.eduservice.entity.Teacher;
 import com.xxh.eduservice.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,17 @@ public class TeacherController {
     private TeacherService teacherService;
 
     @GetMapping("getAll")
-    public List<Teacher> getall(){
+    public PageResult getall(){
         List<Teacher> list = teacherService.list();
-        return list;
+        return PageResult.success().data("list",list);
     }
     @DeleteMapping("delete/{id}")
-    public boolean deleteTeacherById(@PathVariable String id){
+    public PageResult deleteTeacherById(@PathVariable String id){
         boolean res = teacherService.removeById(id);
-        return res;
+        if(res){
+           return PageResult.success();
+        }
+        return PageResult.error();
     }
 
 }
